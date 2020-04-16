@@ -1,0 +1,37 @@
+<div class="container custom-container-2">
+
+  <!-- Show it when there is no employee -->
+  <div class="no-data text-center" *ngIf="Categories.length == 0">
+    <p>Es existieren noch keine Kategorien!</p>
+    <button class="btn btn-outline-primary" routerLink="/create-category">Kategorie hinzufügen</button>
+  </div>
+
+  <!-- Employees list table, it hides when there is no employee -->
+  <div *ngIf="Categories.length !== 0">
+    <h3 class="mb-3 text-center">Kategorien</h3>
+
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Kategorie Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of Categories">
+            <td>{{category._id}}</td>
+            <td>{{category.title}}</td>
+            <td>
+              <!-- <span class="edit" routerLink="/employee-edit/{{category.id}}">Edit</span> -->
+              <span class="delete" (click)="deleteCategory(category.id)">Delete</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
