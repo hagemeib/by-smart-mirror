@@ -1,12 +1,13 @@
-# by-smart-mirror
+# node-express-mongoose-passport-jwt-rest-api-auth
 
-# Server Installation
-1. Install mongo db on your machine
-2. Configure server/config/database.js with database password.
-3. Run 'npm install'
-4. Run 'node bin/www' for starting server
+This source code is part of tutorials [Node, Express, Mongoose and Passport.js REST API Authentication](https://www.djamware.com/post/58eba06380aca72673af8500/node-express-mongoose-and-passportjs-rest-api-authentication)
 
-# Client installation
-1. Run 'npm install' inside by-angular-client project
-2. Rum ng serve for compiling and starting client
-3. Go to 'localhost:4200' for browsing client.
+Before run this example, make sure you have installed and running MongoDB.
+
+Step to run locally:
+
+* Clone this repo
+* Run 'npm install'
+* Run 'npm start'
+
+If you think this source code is useful, it will be great if you just give it star or just buy me a cup of cofee [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q5WK24UVWUGBN)
