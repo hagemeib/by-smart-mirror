@@ -5,7 +5,10 @@ var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
 var User = require('../models/user');
-var config = require('../config/database'); // get db config file
+
+// Load config file
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/database.json')[env];
 
 var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");

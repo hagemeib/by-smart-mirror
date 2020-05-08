@@ -10,7 +10,7 @@ var passport = require('passport');
 var cors = require('cors');
 var config = require('./config/database');
 
-mongoose.connect(config.database, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(config.database, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
 
 // define routes
 var apiRoute = require('./routes/api');
@@ -18,7 +18,9 @@ var categoryRoute = require('./routes/category');
 
 var app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:4200"
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

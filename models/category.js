@@ -1,14 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
-var CategorySchema = new Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  // parentCategory: {
-  //   type: Category,
-  // }
-});
-
-module.exports = mongoose.model('Category', CategorySchema);
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Category = sequelize.define('Category', {
+    title: DataTypes.STRING,
+    parentId: DataTypes.INTEGER
+  }, {});
+  Category.associate = function(models) {
+    // associations can be defined here
+  };
+  return Category;
+};

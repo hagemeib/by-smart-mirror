@@ -8,54 +8,39 @@ var Category = require("../models/category");
 // List categories
 router.get('/', function(req, res, next) {
     console.log("List categories");
-      Category.find(function (err, categories) {
-        if (err) {
-            return next(err);
-        } 
-        res.json(categories);
-      });
+      Category.findAll()
+        .then(categories => { res.status(200).json(categories) })
+        .catch(err => { res.status(500).json(err) });
 });
 
 // Get category by id
-router.get('/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
-    Category.findById(req.params.id, function (err, category) {
-      if (err) {
-          return next(err);
-      }
-      res.json(category);
-    });
+router.get('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    Category.findByPk(req.params.id)
+        .then(category => { res.status(200).json(category) })
+        .catch(err => { res.status(500).json(err) });
 });
 
 // Create category
 router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
     console.log(req.body);
-    Category.create(req.body, function(err, Category) {
-        if (err) {
-            return res.json({success: false, msg: 'Save category failed.', error: err});
-        }
-        res.json({success: true, msg: 'Successful created new category.'});
-    });
+    Category.create(req.body)
+        .then(category => { res.status(201).json(category) })
+        .catch(err => { res.status(500).json(err) });
 });
 
 // Update category
 router.put('/:id', passport.authenticate('jwt', { session: false }), function(req, res) {
     console.log(req.body);
-    Category.findByIdAndUpdate(req.params.id, req.body, function(err, category) {
-        if (err) {
-            return res.json({success: false, msg: 'Update category failed.'});
-        }
-        res.json({success: true, msg: 'Successful updated category.'});
-    });
+    Category.update(req.body, { where: { id: req.params.id }})
+        .then(category => { res.status(201).json(category) })
+        .catch(err => { res.status(500).json(err) });
 });
 
 // Delete category
 router.delete('/:id', passport.authenticate('jwt', { session: false }), function(req, res, next) {
-    Category.findByIdAndRemove(req.params.id, req.body, function (err, category) {
-        if (err) {
-            return next(err);
-        }
-        res.json({success: true, msg: 'Successful deleted category.'});
-    });
+    Category.destroy({ where: { id: req.params.id }})
+        .then( res.status(200) )
+        .catch(err => { res.status(500).json(err) });
 });
   
 checkToken = function (req, res, next) {
